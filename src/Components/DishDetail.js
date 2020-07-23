@@ -1,22 +1,19 @@
-import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody,
+import React from 'react';
+import { Card, CardImg,  CardText, CardBody,
     CardTitle } from 'reactstrap';
 
- class DishDetail extends Component{
-     constructor(props){
-         super(props);
-
-     }
+ function DishDetail(props){
+    
  
-        render(){  
-            const dish=this.props.dish; 
+    
+            const dish=props.dish; 
             
             if(dish!=null){ 
                    const Comment=dish.comments.map((comm)=>{
                        console.table(comm)
                     console.log(comm);
                        return (
-                          <div className="d-flex"> 
+                          <div key={comm.id} className="d-flex"> 
                     <ul  className="list-unstyled text-left">
                         <li >{comm.comment}</li>
                         <li >{'-- '+comm.author +" , " + new Intl.DateTimeFormat("en-US", {
@@ -29,7 +26,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
                        )
                    })
                 return(
-                    <div>
+                    <div className="container">
                     <div className="row">
                          <div  className="col-12 col-md-5 m-1">
                         <Card>
@@ -52,7 +49,6 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
             }else{
                 return(<div></div>)
             }
-        }
            
 }
 
