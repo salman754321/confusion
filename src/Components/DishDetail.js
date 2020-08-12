@@ -21,7 +21,7 @@ import { Card, CardImg,  CardText, CardBody,
         );
   
       }
- function RenderComments({comments}) {
+ function RenderComments({comments, addComment, dishId}) {
       
       
          const commentss= comments.map((commen)=>{
@@ -39,7 +39,7 @@ import { Card, CardImg,  CardText, CardBody,
           return (
               <div>
               {commentss}
-            <CommentForm/>
+            <CommentForm dishId={dishId} addComment={addComment}/>
               </div>
           )
         
@@ -65,7 +65,8 @@ const  DishDetail = (props) => {
                 <RenderDish dish={props.dish} />
             </div>
             <div className="col-12 col-md-5 m-1">
-                <RenderComments comments={props.comment} />
+                <RenderComments comments={props.comment} addComment={props.addComment}
+        dishId={props.dish.id} />
             </div>
         </div>
         </div>
