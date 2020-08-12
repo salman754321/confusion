@@ -2,8 +2,10 @@ import React from 'react';
 import { Card, CardImg,  CardText, CardBody,
     CardTitle , Breadcrumb, BreadcrumbItem} from 'reactstrap';
     import {Link} from "react-router-dom"
+    
+    import CommentForm from "./CommentForm"
 
-
+//DishDetail
     function RenderDish({dish}) {
     console.log(dish)
         return(
@@ -28,6 +30,7 @@ import { Card, CardImg,  CardText, CardBody,
             <ul  className="list-unstyled text-left">
                 <li >{commen.comment}</li>
                 <li >{'-- '+commen.author +" , " + commen.date}</li>
+            
             </ul>
             </div>
             )
@@ -36,6 +39,7 @@ import { Card, CardImg,  CardText, CardBody,
           return (
               <div>
               {commentss}
+            <CommentForm/>
               </div>
           )
         
