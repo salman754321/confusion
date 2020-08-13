@@ -25,9 +25,11 @@ import { Card, CardImg,  CardText, CardBody,
       
       
          const commentss= comments.map((commen)=>{
+             console.log(comments)
             return (
             <div key={commen.id} className="d-flex"> 
             <ul  className="list-unstyled text-left">
+            <li>Rating : {commen.rating}</li>
                 <li >{commen.comment}</li>
                 <li >{'-- '+commen.author +" , " + commen.date}</li>
             
