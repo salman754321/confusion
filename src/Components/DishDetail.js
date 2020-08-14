@@ -2,12 +2,32 @@ import React from 'react';
 import { Card, CardImg,  CardText, CardBody,
     CardTitle , Breadcrumb, BreadcrumbItem} from 'reactstrap';
     import {Link} from "react-router-dom"
-    
+    import { Loading } from './LoadingComponent';
     import CommentForm from "./CommentForm"
 
 //DishDetail
-    function RenderDish({dish}) {
-    console.log(dish)
+    function RenderDish({dish,errMess,isLoading}) {
+   
+    if (isLoading) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+    else if (errMess) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <h4>{errMess}</h4>
+                </div>
+            </div>
+        );
+    }
+    else
+    {
         return(
           
                 <Card>
@@ -19,6 +39,7 @@ import { Card, CardImg,  CardText, CardBody,
                 </Card>
                
         );
+    }
   
       }
  function RenderComments({comments, addComment, dishId}) {
@@ -47,8 +68,13 @@ import { Card, CardImg,  CardText, CardBody,
         
 }
 const  DishDetail = (props) => {
-    console.log(props.dish)
-
+    console.log(props)
+if(props.dishesLoading){
+    return(
+        <Loading/>
+    )
+}else{
+    
     return (
         <div className="container">
         <div className="row">
@@ -64,7 +90,8 @@ const  DishDetail = (props) => {
         </div>
         <div className="row">
             <div className="col-12 col-md-5 m-1">
-                <RenderDish dish={props.dish} />
+                <RenderDish dish={props.dish}    isLoading={props.dish.isLoading}
+        errMess={props.dish.errMess} />
             </div>
             <div className="col-12 col-md-5 m-1">
                 <RenderComments comments={props.comment} addComment={props.addComment}
@@ -73,6 +100,7 @@ const  DishDetail = (props) => {
         </div>
         </div>
     );
+}
   }
 
 

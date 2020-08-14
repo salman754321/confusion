@@ -45,6 +45,7 @@ import { Col,Row,Button,Modal,ModalHeader,ModalBody,Label} from 'reactstrap';
                     </Label>
                     <Col md={{ size: 12 }}>
                       <Control.select
+                      defaultChecked="1"
                         model=".rating"
                         name="rating"
                         className="form-control"

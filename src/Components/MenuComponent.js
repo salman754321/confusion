@@ -2,8 +2,29 @@ import React from 'react';
 import { Card, CardImg, CardImgOverlay,
     CardTitle,BreadcrumbItem,Breadcrumb } from 'reactstrap';
 import {Link} from "react-router-dom"   
-
-function RenderMenuItem ({dish, onClick}) {
+import { Loading } from './LoadingComponent';
+function RenderMenuItem ({dish, onClick,errMess,isLoading}) {
+    if (isLoading) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+    else if (errMess) {
+        return(
+            <div className="container">
+                <div className="row"> 
+                    <div className="col-12">
+                        <h4>{errMess}</h4>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    else{
     return (
         <Card>
             <Link to={`/menu/${dish.id}`}>
@@ -14,6 +35,7 @@ function RenderMenuItem ({dish, onClick}) {
             </Link>
         </Card>
     );
+    }
 }
 
 const Menu = (props) => {
