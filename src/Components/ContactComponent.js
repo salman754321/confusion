@@ -1,7 +1,7 @@
 import React from 'react';
 import {Breadcrumb ,BreadcrumbItem, Button,  Label,  Col,Row} from "reactstrap"
 import {Link} from "react-router-dom"
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Form, Errors, actions } from 'react-redux-form';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -22,6 +22,7 @@ class Contact extends React.Component {
         handleSubmit(values) {
             console.log('Current State is: ' + JSON.stringify(values));
             alert('Current State is: ' + JSON.stringify(values));
+            this.props.resetFeedbackForm();
             // event.preventDefault();
         }
 
@@ -71,12 +72,12 @@ class Contact extends React.Component {
                     <h3>FeedBack</h3>
                 </div>
                 <div className="col-12 col-md-9">
-                    <LocalForm onSubmit={(values)=>this.handleSubmit(values)}>
+                    <Form model="feedback" onSubmit={(values)=>this.handleSubmit(values)}>
                      
                         <Row className="form-group">
                             <Label htmlfor="firstname" md={2}> First Name</Label>
                             <Col md={10}>
-                                <Control.text model=".firstname" className="dorm-control"
+                                <Control.text model=".firstname" className="form-control"
                                  id="firstname" name="firstname"
                                 placeholder="First Name"
                                 validators={{
@@ -97,7 +98,7 @@ class Contact extends React.Component {
                         <Row className="form-group">
                             <Label htmlfor="lastname" md={2}> Last Name</Label>
                             <Col md={10}>
-                            <Control.text model=".lastname" className="dorm-control"
+                            <Control.text model=".lastname" className="form-control"
                              id="lastname" name="lastname"
                                 placeholder="Last Name"   validators={{
                                     required, minLength: minLength(3), maxLength: maxLength(15)
@@ -118,7 +119,7 @@ class Contact extends React.Component {
                         <Row className="form-group">
                             <Label htmlfor="telnum" md={2}> Tel No</Label>
                             <Col md={10}>
-                            <Control.text model=".telnum" className="dorm-control" id="telenum" name="telnum"
+                            <Control.text model=".telnum" className="form-control" id="telenum" name="telnum"
                                 placeholder="Tel No"     validators={{
                                     required, minLength: minLength(3), maxLength: maxLength(15), isNumber
                                 }}
@@ -139,7 +140,7 @@ class Contact extends React.Component {
                         <Row className="form-group">
                             <Label htmlfor="email" md={2}> Email</Label>
                             <Col md={10}>
-                            <Control.text model=".email" className="dorm-control" id="email" name="email"
+                            <Control.text model=".email" className="form-control" id="email" name="email"
                                 placeholder="Email" validators={{
                                     required, validEmail
                                 }}
@@ -190,7 +191,7 @@ class Contact extends React.Component {
                                     </Button>
                                 </Col>
                             </Row>
-                    </LocalForm>
+                    </Form>
                 </div>
             </div>
         </div>
