@@ -2,7 +2,7 @@ import React from 'react';
 import { Loading } from './LoadingComponent';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle} from 'reactstrap';
-
+import {baseUrl} from "../redux/baseUrl"
 function RenderCard({item, isLoading, errMess}) {
 
  
@@ -21,7 +21,7 @@ function RenderCard({item, isLoading, errMess}) {
         return(
            
       <Card>
-          <CardImg src={item.image} alt={item.name} />
+          <CardImg src={baseUrl+item.image} alt={item.name} />
           <CardBody>
           <CardTitle>{item.name}</CardTitle>
           {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null }
@@ -42,7 +42,7 @@ function Home(props) {
                   <RenderCard item={props.dish}  isLoading={props.dishesLoading} errMess={props.dishesErrMess} />
               </div>
               <div className="col-12 col-md m-1">
-                  <RenderCard item={props.promo} />
+                  <RenderCard item={props.promotion} isLoading={props.promoLoading} errMess={props.promoErrMess}/>
               </div>
               <div className="col-12 col-md m-1">
                   <RenderCard item={props.leader} />
