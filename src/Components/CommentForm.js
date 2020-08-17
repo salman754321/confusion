@@ -24,7 +24,7 @@ import { Col,Row,Button,Modal,ModalHeader,ModalBody,Label} from 'reactstrap';
       }
     
       handleSubmit(values) {
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
       
         
       }

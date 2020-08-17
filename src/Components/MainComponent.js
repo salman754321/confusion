@@ -13,7 +13,7 @@ import Contact from "./ContactComponent"
 import { Switch, Route, Redirect,withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { addComment, fetchDishes, fetchComments, fetchPromos} from "../redux/ActionCreators"
+import { postComment, fetchDishes, fetchComments, fetchPromos} from "../redux/ActionCreators"
 
 
 const mapStateToProps = state => {
@@ -26,7 +26,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchtoProps=(dispatch)=>({
-  addComment:(dishid,rating,author,comment)=> dispatch(addComment(dishid,rating,author,comment)),
+  postComment:(dishid,rating,author,comment)=> dispatch(postComment(dishid,rating,author,comment)),
   fetchDishes: () => {dispatch(fetchDishes())},
   resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
   fetchComments:()=>dispatch(fetchComments()),
@@ -56,7 +56,7 @@ render(){
           dishesLoading={this.props.dishes.isLoading}
           dishesErrMess={this.props.dishes.errMess} 
           comment={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishid,10))}
-          commentsErrMess={this.props.comments.errMess} addComment={this.props.addComment} />
+          commentsErrMess={this.props.comments.errMess} postComment={this.props.postComment} />
     );
   };
   console.log(this.props);

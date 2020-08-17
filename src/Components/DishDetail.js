@@ -43,7 +43,7 @@ import { Card, CardImg,  CardText, CardBody,
     }
   
       }
- function RenderComments({comments, addComment, dishId}) {
+ function RenderComments({comments, postComment, dishId}) {
       
       
          const commentss= comments.map((commen)=>{
@@ -63,7 +63,7 @@ import { Card, CardImg,  CardText, CardBody,
           return (
               <div>
               {commentss}
-            <CommentForm dishId={dishId} addComment={addComment}/>
+            <CommentForm dishId={dishId} postComment={postComment}/>
               </div>
           )
         
@@ -95,7 +95,7 @@ if(props.dishesLoading){
         errMess={props.dish.errMess} />
             </div>
             <div className="col-12 col-md-5 m-1">
-                <RenderComments comments={props.comment} addComment={props.addComment}
+                <RenderComments comments={props.comment} postComment={props.postComment}
         dishId={props.dish.id} />
             </div>
         </div>
